@@ -1,0 +1,65 @@
+﻿@model IEnumerable<RoxCorp.Models.ApplyForLeave>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Leave)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplyFromDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplyToDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplyNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplyRegisteredDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Leave.LeaveType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.EmployeeEmail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplyFromDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplyToDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplyNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplyRegisteredDate)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ApplyForLeaveId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ApplyForLeaveId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ApplyForLeaveId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

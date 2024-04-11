@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RoxCorp.Models;
 
 namespace RoxCorp.Data
 {
@@ -9,5 +10,10 @@ namespace RoxCorp.Data
             : base(options)
         {
         }
+
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Leave> Leaves { get; set; }
+        public DbSet<ApplyForLeave> ApplyForLeaves { get; set;}
+        public DbSet<GrantLeave> GrantLeaves { get; set;}
     }
 }

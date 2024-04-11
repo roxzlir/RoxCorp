@@ -22,6 +22,6 @@ namespace RoxCorp.Models
         [DisplayName("Note")]
         [StringLength(200, ErrorMessage = "Note can only have max 200 characters")]
         public string? ApplyNote { get; set; }
-        public DateTime ApplyRegisteredDate { get; set; }
+        public DateTime ApplyRegisteredDate {  get; set; }
     }
 }

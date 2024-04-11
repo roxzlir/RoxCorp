@@ -18,6 +18,7 @@ namespace RoxCorp.Models
         [Required(ErrorMessage ="Date is required")]
         [DisplayName("Decision Date")]
         public DateTime DecisionDate { get; set; }
+
          
     }
 }

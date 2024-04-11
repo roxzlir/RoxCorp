@@ -1,0 +1,59 @@
+﻿@model RoxCorp.Models.ApplyForLeave
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ApplyForLeave</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ApplyForLeaveId" />
+            <div class="form-group">
+                <label asp-for="FkLeaveId" class="control-label"></label>
+                <select asp-for="FkLeaveId" class="form-control" asp-items="ViewBag.FkLeaveId"></select>
+                <span asp-validation-for="FkLeaveId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FkEmployeeId" class="control-label"></label>
+                <select asp-for="FkEmployeeId" class="form-control" asp-items="ViewBag.FkEmployeeId"></select>
+                <span asp-validation-for="FkEmployeeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplyFromDate" class="control-label"></label>
+                <input asp-for="ApplyFromDate" class="form-control" />
+                <span asp-validation-for="ApplyFromDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplyToDate" class="control-label"></label>
+                <input asp-for="ApplyToDate" class="form-control" />
+                <span asp-validation-for="ApplyToDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplyNote" class="control-label"></label>
+                <input asp-for="ApplyNote" class="form-control" />
+                <span asp-validation-for="ApplyNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApplyRegisteredDate" class="control-label"></label>
+                <input asp-for="ApplyRegisteredDate" class="form-control" />
+                <span asp-validation-for="ApplyRegisteredDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
