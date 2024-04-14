@@ -13,22 +13,28 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApplyForLeave)
+                Applications
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Granted)
+                Granted
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DecisionDate)
+                Date for granted decision
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ApplyForLeave.ApplyForLeaveId)
+                    @Html.DisplayFor(modelItem => item.ApplyForLeave.Leave.LeaveType)
+                    -
+                    @Html.DisplayFor(modelItem => item.ApplyForLeave.Employee.EmployeeName)
+                    (
+                    @Html.DisplayFor(modelItem => item.ApplyForLeave.ApplyFromDate)
+                    -
+                    @Html.DisplayFor(modelItem => item.ApplyForLeave.ApplyToDate)
+                    )
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Granted)

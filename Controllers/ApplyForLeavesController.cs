@@ -59,10 +59,11 @@ namespace RoxCorp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ApplyForLeaveId,FkLeaveId,FkEmployeeId,ApplyFromDate,ApplyToDate,ApplyNote,ApplyRegisteredDate")] ApplyForLeave applyForLeave)
+        public async Task<IActionResult> Create([Bind("ApplyForLeaveId,FkLeaveId,FkEmployeeId,ApplyFromDate,ApplyToDate,ApplyNote")] ApplyForLeave applyForLeave)
         {
             if (ModelState.IsValid)
             {
+                applyForLeave.ApplyRegisteredDate = DateTime.Now; // Sätter att ApplyRegisteredDate får dagens datum
                 _context.Add(applyForLeave);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -95,7 +96,7 @@ namespace RoxCorp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ApplyForLeaveId,FkLeaveId,FkEmployeeId,ApplyFromDate,ApplyToDate,ApplyNote,ApplyRegisteredDate")] ApplyForLeave applyForLeave)
+        public async Task<IActionResult> Edit(int id, [Bind("ApplyForLeaveId,FkLeaveId,FkEmployeeId,ApplyFromDate,ApplyToDate,ApplyNote")] ApplyForLeave applyForLeave)
         {
             if (id != applyForLeave.ApplyForLeaveId)
             {
@@ -106,6 +107,7 @@ namespace RoxCorp.Controllers
             {
                 try
                 {
+                    applyForLeave.ApplyRegisteredDate = DateTime.Now; // Sätter att ApplyRegisteredDate får dagens datum
                     _context.Update(applyForLeave);
                     await _context.SaveChangesAsync();
                 }

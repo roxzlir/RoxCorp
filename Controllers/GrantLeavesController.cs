@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RoxCorp.Data;
 using RoxCorp.Models;
+using RoxCorp.Utility;
 
 namespace RoxCorp.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class GrantLeavesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,8 +25,14 @@ namespace RoxCorp.Controllers
         // GET: GrantLeaves
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.GrantLeaves.Include(g => g.ApplyForLeave);
+            var applicationDbContext = _context.GrantLeaves
+                .Include(g => g.ApplyForLeave)
+                .ThenInclude(a => a.Leave)
+                .Include(g => g.ApplyForLeave)
+                .ThenInclude(a => a.Employee);
+
             return View(await applicationDbContext.ToListAsync());
+            
         }
 
         // GET: GrantLeaves/Details/5
@@ -48,7 +57,9 @@ namespace RoxCorp.Controllers
         // GET: GrantLeaves/Create
         public IActionResult Create()
         {
-            ViewData["FkApplyForLeaveId"] = new SelectList(_context.ApplyForLeaves, "ApplyForLeaveId", "ApplyForLeaveId");
+            //ViewData["FkApplyForLeaveId"] = new SelectList(_context.ApplyForLeaves, "ApplyForLeaveId", "ApplyForLeaveId");
+            ViewBag.ApplyForLeaveInfo = _context.ApplyForLeaves.Select(a => new { ApplyForLeaveId = a.ApplyForLeaveId, DisplayText =
+                $"{a.Leave.LeaveType} for {a.Employee.EmployeeName}   ({a.ApplyFromDate}-{a.ApplyToDate})" }).ToList();
             return View();
         }
 
