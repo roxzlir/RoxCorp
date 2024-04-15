@@ -1,0 +1,35 @@
+﻿@model EmployeeNameLeaveInfoViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Search Results for @Model.selectedEmployee</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type of leave</th>
+            <th>Applied period</th>
+            <th>Message</th>
+            <th>Request registered</th>
+            <th>Granted</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Leaves)
+        {
+            <tr>
+                <td>@item.LeaveType</td>
+                <td>
+                    @item.ApplyFromDate.ToShortDateString()
+                    -
+                    @item.ApplyToDate.ToShortDateString()
+                </td>
+                <td>@item.ApplyNote</td>
+                <td>@item.ApplyRegisteredDate.ToShortDateString()</td>
+                <td>@item.Granted</td>
+            </tr>
+        }
+    </tbody>
+</table>

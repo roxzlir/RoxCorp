@@ -27,7 +27,7 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Employees" asp-action="Index">Employees</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Leaves" asp-action="Index">Different types of leave</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Leaves" asp-action="Index">Type of leave</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="ApplyForLeaves" asp-action="Index">Apply for Leave</a>
@@ -38,11 +38,14 @@
                                 <a class="nav-link text-light" asp-area="" asp-controller="GrantLeaves" asp-action="Index">Handle leave requests</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="EmployeeLeaves" asp-action="Index">See Employee by Leave Type</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="EmployeeLeaves" asp-action="Index">Leave Type list</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="EmployeeNameLeave" asp-action="Index">See Leaves by Employee Name</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="EmployeeNameLeave" asp-action="Index">Leaves per Employee</a>
                             </li>
+                            @* <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="EmployeeNameLeave" asp-action="Search">Search on employee name</a>
+                            </li> *@
                         } 
                     </ul>
                     <partial name="_LoginPartial" class="nav-link text-light" />

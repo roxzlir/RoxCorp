@@ -1,14 +1,23 @@
-﻿@model IEnumerable<RoxCorp.Models.Leave>
+﻿@using RoxCorp.Utility
+@model IEnumerable<RoxCorp.Models.Leave>
 
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
+@if (!User.IsInRole(SD.Role_Admin))
+{
+    <p>Please contact admin if there is any option missing in this list (only admin can add or change these items</p>
+}
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</p>
+@if (User.IsInRole(SD.Role_Admin))
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
@@ -24,11 +33,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LeaveType)
             </td>
-                <td class="btn-group btn-group-sm">
-                    <a asp-action="Edit" asp-route-id="@item.LeaveId" class="btn btn-primary">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.LeaveId" class="btn btn-primary">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.LeaveId" class="btn btn-primary">Delete</a>
-            </td>
+                @if (User.IsInRole(SD.Role_Admin))
+                {
+                    <td class="btn-group btn-group-sm">
+                        <a asp-action="Edit" asp-route-id="@item.LeaveId" class="btn btn-primary">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.LeaveId" class="btn btn-primary">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.LeaveId" class="btn btn-primary">Delete</a>
+                    </td>
+                }
         </tr>
 }
     </tbody>
