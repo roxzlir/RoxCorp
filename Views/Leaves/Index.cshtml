@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -24,10 +24,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.LeaveType)
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LeaveId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LeaveId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LeaveId">Delete</a>
+                <td class="btn-group btn-group-sm">
+                    <a asp-action="Edit" asp-route-id="@item.LeaveId" class="btn btn-primary">Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.LeaveId" class="btn btn-primary">Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.LeaveId" class="btn btn-primary">Delete</a>
             </td>
         </tr>
 }

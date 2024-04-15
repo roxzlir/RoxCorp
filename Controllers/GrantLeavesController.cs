@@ -25,6 +25,7 @@ namespace RoxCorp.Controllers
         // GET: GrantLeaves
         public async Task<IActionResult> Index()
         {
+            //Jag lägger till och kör inclode på 2 tabeller till då jag vill kunna visa data från dem med
             var applicationDbContext = _context.GrantLeaves
                 .Include(g => g.ApplyForLeave)
                 .ThenInclude(a => a.Leave)
@@ -43,8 +44,12 @@ namespace RoxCorp.Controllers
                 return NotFound();
             }
 
+            //Lägger även till dem 2 tabellerna här för att kunna visa med saker under Details
             var grantLeave = await _context.GrantLeaves
                 .Include(g => g.ApplyForLeave)
+                .ThenInclude(a => a.Leave)
+                .Include(g => g.ApplyForLeave)
+                .ThenInclude(a => a.Employee)
                 .FirstOrDefaultAsync(m => m.GrantLeaveId == id);
             if (grantLeave == null)
             {

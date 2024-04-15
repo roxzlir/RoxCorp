@@ -10,11 +10,32 @@
     <h4>GrantLeave</h4>
     <hr />
     <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ApplyForLeave.Leave.LeaveType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApplyForLeave.Leave.LeaveType)
+            
+        </dd>
+        <dt class="col-sm-2">
+            Registered date
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApplyForLeave.ApplyRegisteredDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ApplyForLeave.Employee.EmployeeName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ApplyForLeave.Employee.EmployeeName)
+        </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ApplyForLeave)
+            Applied for dates
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ApplyForLeave.ApplyForLeaveId)
+            @Html.DisplayFor(model => model.ApplyForLeave.ApplyFromDate)
+            -
+            @Html.DisplayFor(model => model.ApplyForLeave.ApplyToDate)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Granted)

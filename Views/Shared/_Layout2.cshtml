@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RoxCorp</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -21,24 +21,27 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Employees" asp-action="Index">Employees</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Employees" asp-action="Index">Employees</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Leaves" asp-action="Index">Different types of leave</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Leaves" asp-action="Index">Different types of leave</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ApplyForLeaves" asp-action="Index">Apply for Leave</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="ApplyForLeaves" asp-action="Index">Apply for Leave</a>
                         </li>
                         @if (User.IsInRole(SD.Role_Admin))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="GrantLeaves" asp-action="Index">Handle leave requests</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="GrantLeaves" asp-action="Index">Handle leave requests</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="EmployeeLeaves" asp-action="Index">See Employee by Leave Type</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="EmployeeLeaves" asp-action="Index">See Employee by Leave Type</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="EmployeeNameLeave" asp-action="Index">See Leaves by Employee Name</a>
                             </li>
                         }
                     </ul>
@@ -47,14 +50,14 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container-fluid">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container-fluid">
+        <div class="container">
             &copy; 2024 - RoxCorp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
