@@ -17,11 +17,14 @@ namespace RoxCorp.Models
         [ForeignKey("Employee")]
         public int FkEmployeeId { get; set; }
         public Employee? Employee { get; set; }
+        [DisplayName("From Date")]
         public DateTime ApplyFromDate { get; set; }
+        [DisplayName("To Date")]
         public DateTime ApplyToDate { get; set;}
         [DisplayName("Note")]
         [StringLength(200, ErrorMessage = "Note can only have max 200 characters")]
         public string? ApplyNote { get; set; }
+        [DisplayName("Registered at date")]
         public DateTime ApplyRegisteredDate {  get; set; }
     }
 }

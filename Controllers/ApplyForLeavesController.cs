@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using RoxCorp.Data;
 using RoxCorp.Models;
+using RoxCorp.Utility;
 
 namespace RoxCorp.Controllers
 {
@@ -168,5 +170,31 @@ namespace RoxCorp.Controllers
         {
             return _context.ApplyForLeaves.Any(e => e.ApplyForLeaveId == id);
         }
+
+
+        //Här lägger jag så man ska kunna kolla efter en månad om vilka som sökt ledighet
+        public async Task<IActionResult> MonthlySummary(int? year, int? month)
+        {
+            if (!year.HasValue || !month.HasValue)
+            {
+                return View(new MonthlySummaryViewModel { Year = DateTime.Now.Year, Month = DateTime.Now.Month, Applies = new List<ApplyForLeave>() });
+            }
+
+            var applies = await _context.ApplyForLeaves
+                .Include(x => x.Employee)
+                .Include(x => x.Leave)
+                .Where(x => x.ApplyFromDate.Year == year.Value && x.ApplyFromDate.Month == month.Value)
+                .ToListAsync();
+
+            var viewModel = new MonthlySummaryViewModel
+            {
+                Year = year.Value,
+                Month = month.Value,
+                Applies = applies
+            };
+
+            return View(viewModel);
+        }
+
     }
 }
