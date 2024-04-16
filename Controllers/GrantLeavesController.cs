@@ -64,7 +64,7 @@ namespace RoxCorp.Controllers
         {
             //ViewData["FkApplyForLeaveId"] = new SelectList(_context.ApplyForLeaves, "ApplyForLeaveId", "ApplyForLeaveId");
             ViewBag.ApplyForLeaveInfo = _context.ApplyForLeaves.Select(a => new { ApplyForLeaveId = a.ApplyForLeaveId, DisplayText =
-                $"{a.Leave.LeaveType} for {a.Employee.EmployeeName}   ({a.ApplyFromDate}-{a.ApplyToDate})" }).ToList();
+                $"Registered {a.ApplyRegisteredDate} {a.Leave.LeaveType} for {a.Employee.EmployeeName}   ({a.ApplyFromDate}-{a.ApplyToDate})" }).OrderByDescending(a => a.ApplyForLeaveId).ToList();
             return View();
         }
 

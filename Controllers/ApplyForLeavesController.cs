@@ -22,7 +22,7 @@ namespace RoxCorp.Controllers
         // GET: ApplyForLeaves
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.ApplyForLeaves.Include(a => a.Employee).Include(a => a.Leave);
+            var applicationDbContext = _context.ApplyForLeaves.Include(a => a.Employee).Include(a => a.Leave).OrderByDescending(x => x.ApplyRegisteredDate);
             return View(await applicationDbContext.ToListAsync());
         }
 
