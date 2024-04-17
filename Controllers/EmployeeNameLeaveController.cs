@@ -73,7 +73,7 @@ namespace RoxCorp.Controllers
         public async Task<IActionResult> Search(string employeeName)
         {
             // Sök efter anställdens ledigheter baserat på namnet
-            // Implementera din logik för att hämta data från databasen här
+            
             var applyEmployeeLeaveQuery = from applies in _context.ApplyForLeaves
                                           join emp in _context.Employees on applies.FkEmployeeId equals emp.EmployeeId
                                           join lea in _context.Leaves on applies.FkLeaveId equals lea.LeaveId
@@ -93,15 +93,15 @@ namespace RoxCorp.Controllers
                 ApplyRegisteredDate = x.applies.ApplyRegisteredDate,
                 Granted = x.grant.Granted
             }).ToListAsync();
-            // Skicka den hittade informationen till Results-vyn
+            // Skickar den hittade informationen till Results-vyn
             var viewModel = new EmployeeNameLeaveInfoViewModel()
             {
                 Leaves = leaves,
                 selectedEmployee = employeeName
             };
-            // Fyll viewModel med de data du vill visa i Results-vyn
+            
 
-            // Returnera till Results-vyn med de sökta resultaten
+            // Returnerar till Results-vyn med de sökta resultaten
             return RedirectToAction("Results", new { employeeName });
         }
 
